@@ -41,7 +41,7 @@ on e.branch_id = b.branch_id
 left join employees as m
 on b.manager_id = m.emp_id ;
 
--- Task  6: Retrieve the List of Books Not Yet Returned
+-- Task  5: Retrieve the List of Books Not Yet Returned
 
 select ist.issued_book_name from issued_status as ist
 left join return_status as rst
@@ -145,17 +145,9 @@ WHERE member_id IN (
 );
 select * from active_members;
 
--- Task 11: Find Employees with the Most Book Issues Processed Write a query to find the top 3 employees who have processed the most book issues.
--- Display the employee name, number of books processed, and their branch.
 
-select e.emp_id,e.emp_name,b.branch_id,count(ist.issued_id) as booke_issued_count  from issued_status as ist 
-join employees as e
-on ist.issued_emp_id = e.emp_id
-join branch as b 
-on e.branch_id = b.branch_id
-group by e.emp_id,e.emp_name,b.branch_id;
 
-/* Task 12: Find Employees with the Most Book Issues Processed
+/* Task 11: Find Employees with the Most Book Issues Processed
 Write a query to find the top 3 employees who have processed the most book issues. Display the employee name, number of books processed, and their branch.*/
 select e.emp_id,e.emp_name , count(ist.issued_id) no_books_processed , e.branch_id from issued_status as ist
 join employees as e
@@ -165,7 +157,7 @@ order by   no_books_processed desc limit 3;
 
 select * from issued_status;
 
--- Task 13: Stored Procedure Objective: Create a stored procedure to manage the status of books in a library system. 
+-- Task 12: Stored Procedure Objective: Create a stored procedure to manage the status of books in a library system. 
 -- Description: Write a stored procedure that updates the status of a book in the library based on its issuance.
 -- The procedure should function as follows: The stored procedure should take the book_id as an input parameter. 
 -- The procedure should first check if the book is available (status = 'yes'). 
@@ -202,7 +194,7 @@ select * from books
 where isbn = '978-0-06-025492-6';
 
 
--- Task 14: Create Table As Select (CTAS) Objective: Create a CTAS (Create Table As Select) query to identify overdue books and calculate fines.
+-- Task 13: Create Table As Select (CTAS) Objective: Create a CTAS (Create Table As Select) query to identify overdue books and calculate fines.
 -- Description: Write a CTAS query to create a new table that lists each member and the books they have issued but not returned within 30 days. 
 -- The table should include: The number of overdue books. The total fines, with each day's fine calculated at $0.50. 
 -- The number of books issued by each member. The resulting table should show: Member ID Number of overdue books Total fines
